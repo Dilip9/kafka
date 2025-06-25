@@ -32,4 +32,7 @@ public class GuestUserRequest {
 
     @Column(name = "country", nullable = true, length = 100)
     private String country;
+
+    @Embedded
+    private Auditable auditable;
 }
