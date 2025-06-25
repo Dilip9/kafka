@@ -1,8 +1,9 @@
 package edu.kfk.gouri.common;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController("/smtp-email")
 public class SmtpEmail {
 
-    @Autowired
-    @KafkaListener(topics="User_created",groupId="cid")
 
-    public void consume(String usercreated) {
+    @PostMapping(value = "/sendEmail", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> sendEmail(String usercreated) {
         log.info(" Sending email for users creation "+usercreated);
+        return ResponseEntity.ok("Email sent successfully for user creation: " + usercreated);
     }
 }
