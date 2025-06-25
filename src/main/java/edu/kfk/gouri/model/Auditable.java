@@ -19,10 +19,6 @@ public class Auditable {
 
     private Instant updatedAt;
 
-    private String createdBy;
-
-    private String updatedBy;
-
     public Instant getCreatedAt() {
         return createdAt != null ? createdAt : Instant.now();
     }
